@@ -42,7 +42,7 @@ public class InPortService {
 	public static boolean add(Vector v){
 		//check
 		if(v==null){
-			Hint.test("InPortService.add", "入口参数Vector为null！");
+			Hint.err("InPortService.add", "入口参数Vector为null！");
 			return false;
 		}
 		TbInPort inport = new TbInPort(v,TbInPort.Type.TABLE);
@@ -56,16 +56,38 @@ public class InPortService {
 				return true;
 			else{
 				Hint.note("库存信息添加失败！");
-				Hint.test("InPortService.add", "库存信息添加失败！");
+				Hint.err("InPortService.add", "库存信息添加失败！");
 				return false;
 			}
 		}
-		Hint.test("InPortService.add", "入库信息添加失败！");
+		Hint.err("InPortService.add", "入库信息添加失败！");
 		return false;
 	}
 	
 	public static boolean delete(TbInPort tbInPort){
-		return InPortDao.delete(tbInPort);
+		//check
+		if(tbInPort==null){
+			Hint.err("InPortService.delete", "入口参数TbInPort为null！");
+			return false;
+		}
+		if(InPortDao.delete(tbInPort)){
+			//获得该库存旧数量
+			List<String> whereFieldNames = new LinkedList<>();
+			whereFieldNames.add("product_code");
+			Object[] code = new Object[]{tbInPort.getCode()};
+			List<TbStock> tbStockList = StockDao.query(whereFieldNames, code);
+			//计算库存新值
+			int stockNewNum = tbStockList.get(0).getNum() - tbInPort.getNum();
+			//设置
+			List<String> setFieldNames = new LinkedList<>();
+			setFieldNames.add("num");
+			Object[] objects = new Object[]{stockNewNum, tbInPort.getCode()};
+			if(StockDao.set(setFieldNames, whereFieldNames, objects)==false){
+				Hint.err("InPortService.delete", "删除入库数量成功，但是修改对应库存数量失败！");
+			}
+			return true;
+		}else
+			return false;
 	}
 	
 	public static List<TbInPort> query(List<String> whereFieldNames,Object[] params){
@@ -82,10 +104,9 @@ public class InPortService {
 	public static boolean set(TbInPort tbInPort,String setFieldName,Object setValue){
 		if(tbInPort==null||setFieldName==null
 				||setValue==null){
-			Hint.test("InPortService.set", "入口参数为null！");
+			Hint.err("InPortService.set", "入口参数为null！");
 			return false;
 		}
-		
 		
 		List<String> list = new LinkedList<>();
 		list.add(setFieldName);
@@ -106,7 +127,7 @@ public class InPortService {
 				setFieldNames.add("num");
 				Object[] objects = new Object[]{stockNewNum, tbInPort.getCode()};
 				if(StockDao.set(setFieldNames, whereFieldNames, objects)==false){
-					Hint.test("InPortService.set", "修改入库数量成功，但是修改对应库存数量失败！");
+					Hint.err("InPortService.set", "修改入库数量成功，但是修改对应库存数量失败！");
 				}
 				return true;
 			}

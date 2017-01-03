@@ -207,7 +207,7 @@ public class ProductQuery extends QueryInternalFrame {
 						Object[] params = new Object[]{tbProduct.getId()};
 						TbProduct newTbProduct = ProductService.query(whereFieldNames, params).get(0);
 						table.setValueAt(newTbProduct, point.getRow(), 0);
-						//从table的列表中删除该点
+						//从table的编辑列表中删除该点
 						points.remove(i);
 						successNum++;
 						failNum--;

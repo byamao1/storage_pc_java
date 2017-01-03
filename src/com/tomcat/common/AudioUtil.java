@@ -34,7 +34,7 @@ public class AudioUtil {
 	public static void play(String filePath){
 		//check
 		if(filePath==null||filePath.equals("")){
-			Hint.test("AudioUtil.play", "入库参数filePath为null或空");
+			Hint.err("AudioUtil.play", "入库参数filePath为null或空");
 			return;
 		}
 		 
@@ -54,7 +54,7 @@ public class AudioUtil {
 			sourceDataLine.drain(); 
 			sourceDataLine.close();
 		} catch (IOException|LineUnavailableException|UnsupportedAudioFileException e) { 
-			Hint.printError("AudioUtil.play", e);
+			Hint.err("AudioUtil.play", e);
 		}
 	}
 }

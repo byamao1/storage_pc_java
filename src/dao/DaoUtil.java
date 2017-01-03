@@ -41,11 +41,11 @@ public abstract class DaoUtil {
 	{
 		//check
 		if(sql==null||params==null){
-			Hint.test("DaoUtil.add", "入口参数为null");
+			Hint.err("DaoUtil.add", "入口参数为null");
 			return false;
 		}
 		if(sql.equals("")||params.length<1){
-			Hint.test("DaoUtil.add", "入口参数为空");
+			Hint.err("DaoUtil.add", "入口参数为空");
 			return false;
 		}
 		return DbUtil.executeUpdate(sql, params, DbEntity.PSTM_TYPE);
@@ -65,15 +65,15 @@ public abstract class DaoUtil {
 		//check
 		if(table==null||setFieldNames==null
 				||whereFieldNames==null||params==null){
-			Hint.test("DaoUtil.set", "入口参数为null");
+			Hint.err("DaoUtil.set", "入口参数为null");
 			return false;
 		}
 		if(table.equals("")||setFieldNames.size()<1||params.length<1){//whereFieldNames为空时就是全部设置
-			Hint.test("DaoUtil.set", "入口参数为空");
+			Hint.err("DaoUtil.set", "入口参数为空");
 			return false;
 		}
 		if(setFieldNames.size()+whereFieldNames.size()!=params.length){
-			Hint.test("DaoUtil.set", "sql语句参数个数不匹配");
+			Hint.err("DaoUtil.set", "sql语句参数个数不匹配");
 			return false;
 		}
 		//construct sql
@@ -104,15 +104,15 @@ public abstract class DaoUtil {
 	{
 		//check
 		if(c==null||table==null||whereFieldNames==null||params==null){
-			Hint.test("DaoUtil.query", "入口参数为null");
+			Hint.err("DaoUtil.query", "入口参数为null");
 			return new LinkedList<>();
 		}
 		if(table.equals("")){	//whereFieldNames和params为空时就是查询该表所有项
-			Hint.test("DaoUtil.query", "入口参数table为空");
+			Hint.err("DaoUtil.query", "入口参数table为空");
 			return new LinkedList<>();
 		}
 		if(whereFieldNames.size()!=params.length){
-			Hint.test("DaoUtil.query", "sql语句参数个数不匹配");
+			Hint.err("DaoUtil.query", "sql语句参数个数不匹配");
 			return new LinkedList<>();
 		}
 		//construct sql
@@ -133,7 +133,7 @@ public abstract class DaoUtil {
 			try {
 				t = (T) c.newInstance();		//不能用 t= new T()
 			} catch (InstantiationException | IllegalAccessException e) {
-				Hint.printError("DaoUtil.query", e);
+				Hint.err("DaoUtil.query", e);
 			}
 			t.setAll((Vector)vectors.get(i),TbModel.Type.DB);
 			list.add(t);
@@ -152,15 +152,15 @@ public abstract class DaoUtil {
 	{
 		//check
 		if(table==null||whereFieldNames==null||params==null){
-			Hint.test("DaoUtil.delete", "入口参数为null");
+			Hint.err("DaoUtil.delete", "入口参数为null");
 			return false;
 		}
 		if(table.equals("")){		//whereFieldNames和params为空时，就是删除该表
-			Hint.test("DaoUtil.delete", "入口参数为空");
+			Hint.err("DaoUtil.delete", "入口参数为空");
 			return false;
 		}
 		if(whereFieldNames.size()!=params.length){
-			Hint.test("DaoUtil.delete", "sql语句参数个数不匹配");
+			Hint.err("DaoUtil.delete", "sql语句参数个数不匹配");
 			return false;
 		}
 		//construct sql

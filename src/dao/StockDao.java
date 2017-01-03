@@ -42,7 +42,7 @@ public class StockDao extends DaoUtil{
 	public static boolean add(TbStock tbStock){
 		//check
 		if(tbStock==null){
-			Hint.test("StockDao.add", "入口参数TbStock为null");
+			Hint.err("StockDao.add", "入口参数TbStock为null");
 			return false;
 		}
 		List<String> fields = new LinkedList<>();

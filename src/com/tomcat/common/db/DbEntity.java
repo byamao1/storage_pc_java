@@ -121,7 +121,7 @@ public abstract class DbEntity {
 		}
 		catch(Exception e)
 		{
-			Hint.printError("DbEntity.executeQuery", e);
+			Hint.err("DbEntity.executeQuery", e);
 		}
 		finally{closeCon();}//关闭数据库连接
 		return ans;
@@ -160,7 +160,7 @@ public abstract class DbEntity {
 		}
 		catch (Exception e)
 		{
-			Hint.printError("DbEntity.executeUpdate", e);
+			Hint.err("DbEntity.executeUpdate", e);
 		}
 		finally{closeCon();}//关闭数据库连接
 		return result;
@@ -175,7 +175,7 @@ public abstract class DbEntity {
 		try
 		{
 			conn.commit();
-			Hint.test("DbEntity.executeUpdate", "数据提交成功！");
+			Hint.err("DbEntity.executeUpdate", "数据提交成功！");
 		}
 		catch (Exception e)
 		{

@@ -85,8 +85,8 @@ public abstract class Port extends TbModel{
 		if(type==Type.TABLE){
 			code = (String)v.get(0);
 			name = (String)v.get(1);
-			num = Integer.valueOf((String) v.get(2));
-			price = Float.valueOf((String) v.get(3));
+			num = (int) v.get(2);
+			price = (float)v.get(3);
 			user = (String)v.get(4);
 			date = (String)v.get(5);
 			comment = (String)v.get(6);
@@ -94,8 +94,8 @@ public abstract class Port extends TbModel{
 			super.id = (int)v.get(0);
 			code = (String)v.get(1);
 			name = (String)v.get(2);
-			num = (int) v.get(3);
-			price = (float) v.get(4);
+			num = (int)v.get(3);
+			price = (float)v.get(4);
 			user = (String)v.get(5);
 			date = (String)v.get(6);
 			comment = (String)v.get(7);

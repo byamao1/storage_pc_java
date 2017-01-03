@@ -34,7 +34,7 @@ public class UserDao {
 	public static boolean add(TbUser tbUser){
 		//check
 		if(tbUser==null){
-			Hint.test("UserDao.add", "入口参数TbUser为null");
+			Hint.err("UserDao.add", "入口参数TbUser为null");
 			return false;
 		}
 		String sql="insert into "+table+"(fname,pwd,comment) values(?,?,?)";

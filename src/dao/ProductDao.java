@@ -37,7 +37,7 @@ public class ProductDao {
 	public static boolean add(TbProduct tbProduct){
 		//check
 		if(tbProduct==null){
-			Hint.test("ProductDao.add", "入口参数TbProduct为null");
+			Hint.err("ProductDao.add", "入口参数TbProduct为null");
 			return false;
 		}
 		String sql="insert into "+table+"(code,fname,comment) values(?,?,?)";

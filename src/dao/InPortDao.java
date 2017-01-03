@@ -33,7 +33,7 @@ public class InPortDao {
 	public static boolean add(TbInPort tbInport){
 		//check
 		if(tbInport==null){
-			Hint.test("InPortDao.add", "入口参数TbInPort为null");
+			Hint.err("InPortDao.add", "入口参数TbInPort为null");
 			return false;
 		}
 		String sql="insert into "+table+"(code,fname,num,price,user,fdate,comment) values(?,?,?,?,?,?,?)";
@@ -45,7 +45,7 @@ public class InPortDao {
 	public static boolean delete(TbInPort tbInport){
 		//check
 		if(tbInport==null){
-			Hint.test("InPortDao.delete", "入口参数TbInPort为null");
+			Hint.err("InPortDao.delete", "入口参数TbInPort为null");
 			return false;
 		}
 		List<String> whereFields = new LinkedList<>();

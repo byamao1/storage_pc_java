@@ -54,11 +54,22 @@ public class Hint {
 		System.out.println("TomCat:  <test>"+content);
 	}
 	/**
+	 * 打印错误
+	 * @param name
+	 * @param content
+	 */
+	public static void err(String name,String content){
+		System.err.println("TomCat: ["+name+"] <err>"+content);
+	}
+	public static void err(String content){
+		System.err.println("TomCat:  <err>"+content);
+	}
+	/**
 	 * 输出错误信息
 	 * @param name 使用该方法的  "类名.方法名"
 	 * @param e 错误对象
 	 */
-	public static void printError(String name,Exception e)
+	public static void err(String name,Exception e)
 	{
 		System.out.println("TomCat: ["+name+"] <Error>"+e.getMessage());
 		e.printStackTrace();

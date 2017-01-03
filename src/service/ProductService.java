@@ -31,7 +31,7 @@ public class ProductService {
 	
 	public static boolean add(Vector v){
 		if(v==null){
-			Hint.test("ProductService.add", "入口参数Vector为null！");
+			Hint.err("ProductService.add", "入口参数Vector为null！");
 			return false;
 		}
 		TbProduct tbProduct = new TbProduct(v,TbProduct.Type.TABLE);
@@ -56,7 +56,7 @@ public class ProductService {
 	public static boolean set(TbProduct tbProduct,String setFieldName,Object setValue){
 		if(tbProduct==null||setFieldName==null
 				||setFieldName.equals("")||setValue==null){
-			Hint.test("ProductService.set", "入口参数为null！");
+			Hint.err("ProductService.set", "入口参数为null！");
 			return false;
 		}
 		List<String> list = new LinkedList<>();

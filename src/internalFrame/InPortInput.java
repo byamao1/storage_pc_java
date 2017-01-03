@@ -214,10 +214,10 @@ public class InPortInput extends InputInternalFrame {
 	}
 	private class DateThread extends Thread {
 		public void run() {
-			Hint.test("InPortInput.DateThread.run"," dateThread starts.");
+			Hint.err("InPortInput.DateThread.run"," dateThread starts.");
 			while (true) {
 				if(this.isInterrupted()){
-					Hint.test("InPortInput.DateThread.run"," dateThread stops.");
+					Hint.err("InPortInput.DateThread.run"," dateThread stops.");
 					System.out.println("TomCat:InPortInput dateThread stops.");
 					return;
 				}
@@ -369,8 +369,8 @@ public class InPortInput extends InputInternalFrame {
 				Vector rowData = new Vector();
 				rowData.add(code);
 				rowData.add(name);
-				rowData.add(numStr);
-				rowData.add(priceStr);
+				rowData.add(Integer.valueOf(numStr));
+				rowData.add(Float.valueOf(priceStr));
 				rowData.add(user);
 				rowData.add(date);
 				rowData.add(comment);
