@@ -66,7 +66,7 @@ public class TbStock extends TbModel{
 		if(type==Type.TABLE){
 			product_code = (String)v.get(0);
 			name = (String)v.get(1);
-			num = Integer.valueOf((String)v.get(2));
+			num = (int)v.get(2);
 		}else if(type==Type.DB){
 			super.id = (int)v.get(0);
 			product_code = (String)v.get(1);

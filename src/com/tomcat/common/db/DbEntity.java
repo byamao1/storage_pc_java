@@ -117,6 +117,7 @@ public abstract class DbEntity {
 			default:
 				throw new Exception("不存在该选项");
 			}
+			Hint.test("DbEntity.executeQuery", "数据查询成功！");
 			ans=rs2v(rs);
 		}
 		catch(Exception e)
@@ -175,7 +176,7 @@ public abstract class DbEntity {
 		try
 		{
 			conn.commit();
-			Hint.err("DbEntity.executeUpdate", "数据提交成功！");
+			Hint.test("DbEntity.executeUpdate", "数据提交成功！");
 		}
 		catch (Exception e)
 		{
